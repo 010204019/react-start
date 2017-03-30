@@ -4,9 +4,24 @@ import ReactDOM from 'react-dom';
 // import HomePage from './container/HomePage/hompage'
 // import './index.css';
 import { Router, Route, hashHistory, IndexRoute } from 'react-router';
+import { rootRoute } from './routes/root'
+
+
+
+
+
+
+
+
+
 ReactDOM.render(
   (
-    <Router history={hashHistory}>
+
+    <Router
+      history={hashHistory}
+      routes={rootRoute}
+      />
+    /*<Router history={hashHistory}>
       <Route path="/" getComponent={
         (nextState, callback) => {
           require.ensure([], (require) => {
@@ -19,11 +34,11 @@ ReactDOM.render(
             callback(null, require("./container/HomePage/hompage").default)
           }, "HomePage")
         }}/>
-        {/*<Route path="/homepage" component={HomePage}></Route>*/}
+        <Route path="/homepage" component={HomePage}></Route>
 
-        {/*<Route path="/homepage" component={HomePage}></Route>*/}
+        <Route path="/homepage" component={HomePage}></Route>
       </Route>
-    </Router>
+    </Router>*/
   )
   ,
   document.getElementById('root')

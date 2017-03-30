@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Timeline, Carousel, Row, Col, Card,Table } from 'antd';
+import {Carousel, Row, Col, Card,Table } from 'antd';
 import './homepage.css'
 
 const columns = [{
