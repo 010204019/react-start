@@ -9,6 +9,7 @@ var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeMod
 var getClientEnvironment = require('./env');
 var paths = require('./paths');
 
+var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -59,9 +60,11 @@ module.exports = {
     // This does not produce a real file. It's just the virtual path that is
     // served by WebpackDevServer in development. This is the JS bundle
     // containing code from all our entry points, and the Webpack runtime.
-    filename: 'static/js/bundle.js',
+    filename: 'static/js/bundlexxxx.js',
     // This is the URL that app is served from. We use "/" in development.
-    publicPath: publicPath
+    publicPath: publicPath,
+    // 添加 Reactor 的路由chunkFilename
+    chunkFilename: '[name].[chunkhash:5].chunk.js',
   },
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
@@ -121,7 +124,7 @@ module.exports = {
           name: 'static/media/[name].[hash:8].[ext]'
         }
       },
-      // Process JS with Babel.
+      // Process JS with Babel.[修改过的]
       {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,

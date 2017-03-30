@@ -1,17 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
-import  About from './hompage/about.jsx';
-import { Router, Route, hashHistory } from 'react-router';
-
+// import App from './container/App/app'
+// import HomePage from './container/HomePage/hompage'
+// import './index.css';
+import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 ReactDOM.render(
- (
+  (
     <Router history={hashHistory}>
-      <Route path="/" component={App}/>
+      <Route path="/" getComponent={
+        (nextState, callback) => {
+          require.ensure([], (require) => {
+            callback(null, require("./container/App/app").default)
+          }, "App")
+        }}>
+        <IndexRoute getComponent={
+        (nextState, callback) => {
+          require.ensure([], (require) => {
+            callback(null, require("./container/HomePage/hompage").default)
+          }, "HomePage")
+        }}/>
+        {/*<Route path="/homepage" component={HomePage}></Route>*/}
+
+        {/*<Route path="/homepage" component={HomePage}></Route>*/}
+      </Route>
     </Router>
- )
-//  <App></App>
- ,
+  )
+  ,
   document.getElementById('root')
 );

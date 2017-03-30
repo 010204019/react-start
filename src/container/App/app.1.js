@@ -1,14 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
-
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
-import '../App.css';
-import About from './about';
-import Work from './test1';
-import { Router, Route, hashHistory } from 'react-router';
-class homePage extends Component {
+import './app.css';
+class App extends Component {
     state = {
         collapsed: false,
         mode: 'inline',
@@ -29,13 +24,19 @@ class homePage extends Component {
                     onCollapse={this.onCollapse}
                 >
                     <div className="logo" />
-                    <Menu theme="dark" mode={this.state.mode} defaultSelectedKeys={['6']}>
+                    <Menu theme="dark" mode={this.state.mode} defaultSelectedKeys={['1']}>
+                        <Menu.Item key="1">
+                            <span>
+                                <Icon type="file" />
+                                <span className="nav-text">首页</span>
+                            </span>
+                        </Menu.Item>
                         <SubMenu
                             key="sub1"
                             title={<span><Icon type="user" /><span className="nav-text">作业</span></span>}
                         >
-                            <Menu.Item key="1">普通作业</Menu.Item>
-                            <Menu.Item key="2">周期作业</Menu.Item>
+                            <Menu.Item key="2">普通作业</Menu.Item>
+                            <Menu.Item key="3">周期作业</Menu.Item>
                         </SubMenu>
                         <SubMenu
                             key="sub2"
@@ -44,12 +45,7 @@ class homePage extends Component {
                             <Menu.Item key="4">英语趣配音</Menu.Item>
                             <Menu.Item key="5">体育锻炼卡</Menu.Item>
                         </SubMenu>
-                        <Menu.Item key="6">
-                            <span>
-                                <Icon type="file" />
-                                <span className="nav-text">File</span>
-                            </span>
-                        </Menu.Item>
+
                     </Menu>
                 </Sider>
                 <Layout>
@@ -59,12 +55,13 @@ class homePage extends Component {
                             <Breadcrumb.Item>User</Breadcrumb.Item>
                             <Breadcrumb.Item>Bill</Breadcrumb.Item>
                         </Breadcrumb>
-                        <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                            Bill is a cat.
-            </div>
+                        {/*这里是放置页面内容*/}
+                        <div style={{background: '#fff', minHeight: '100%' }}>
+                            {this.props.children}
+                        </div>
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
-                        Ant Design ©2016 Created by Ant UED
+                       React-Ant-Demo ©2017 Created by Fossil.Lin
           </Footer>
                 </Layout>
             </Layout>
@@ -72,8 +69,8 @@ class homePage extends Component {
     }
 }
 
-homePage.propTypes = {
+App.propTypes = {
 
 };
 
-export default homePage;
+export default App;

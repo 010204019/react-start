@@ -1,0 +1,46 @@
+/* For demo */
+
+.ant-carousel .slick-slide {
+    text-align: center;
+    height: 200px;
+    line-height: 160px;
+    background: #364d79;
+    color: #fff;
+    overflow: hidden;
+}
+
+.code-box-demo {
+    background: rgb(236, 236, 236);
+    padding-left: 0px;
+    padding-top: 30px;
+    padding-right: 10px;
+    padding-bottom: 30px;
+}
+
+
+/* Increase grid spacing of 16px  */
+
+.code-box-demo .ant-row {
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.code-box-demo .ant-row>div {
+    padding: 0 8px;
+}
+
+
+/*表格下的边框*/
+
+.cardTable .ant-card-body {
+    padding: 5px;
+}
+
+.cardTable .ant-card-body td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 50px;
+}
