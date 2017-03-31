@@ -1,17 +1,17 @@
 import React, { Component, PropTypes } from 'react'
 
-class componentName extends Component {
-    render () {
+class Login extends Component {
+    render() {
         return (
             <div>
-                
+
             </div>
         )
     }
 }
 
-componentName.propTypes = {
+Login.propTypes = {
 
 }
 
-export default componentName
+export default Login

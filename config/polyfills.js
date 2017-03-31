@@ -1,4 +1,6 @@
 'use strict';
+//加入babel的polyfill用于支持常用的es6内容
+require('babel-polyfill');
 
 if (typeof Promise === 'undefined') {
   // Rejection tracking prevents a common issue where React gets into an

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^2.8.3",
+    "babel-polyfill": "^6.23.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-router": "^3.0.2"
@@ -86,6 +87,5 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-
-  "homepage":"/app/build/"
+  "homepage": "/app/build/"
 }

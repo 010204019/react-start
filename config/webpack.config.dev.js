@@ -60,10 +60,10 @@ module.exports = {
     // This does not produce a real file. It's just the virtual path that is
     // served by WebpackDevServer in development. This is the JS bundle
     // containing code from all our entry points, and the Webpack runtime.
-    filename: 'static/js/bundlexxxx.js',
+    filename: 'static/js/bundle.js',
     // This is the URL that app is served from. We use "/" in development.
     publicPath: publicPath,
-    // 添加 Reactor 的路由chunkFilename
+    //[+] 添加 Reactor 的路由chunkFilename
     chunkFilename: '[name].[chunkhash:5].chunk.js',
   },
   resolve: {
@@ -124,7 +124,7 @@ module.exports = {
           name: 'static/media/[name].[hash:8].[ext]'
         }
       },
-      // Process JS with Babel.[修改过的]
+      // Process JS with Babel.[[+]]
       {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
