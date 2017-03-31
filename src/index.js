@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 // import App from './container/App/app'
 // import HomePage from './container/HomePage/hompage'
 // import './index.css';
-import { Router, Route, hashHistory, IndexRoute } from 'react-router';
+import { Router, Route, hashHistory, IndexRoute,browserHistory } from 'react-router';
 import { rootRoute } from './routes/root'
 
 

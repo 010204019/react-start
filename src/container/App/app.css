@@ -59,3 +59,8 @@ body,
 .ant-layout {
   height: 100%;
 }
+
+/*首页的页面路由Link样式*/
+.link-homepage{
+  color: black;
+}

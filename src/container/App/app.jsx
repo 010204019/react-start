@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Link, browserHistory,hashHistory } from 'react-router';
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 import './app.css';
@@ -15,6 +16,21 @@ class App extends Component {
             mode: collapsed ? 'vertical' : 'inline',
         });
     }
+    /**
+     * 点击菜单处理事件,通过触发时间派发浏览器路由
+     */
+    handleMenuClick = (e) => {
+        console.log(e);
+        switch (e.key) {
+            case "1":
+                hashHistory.push("/app/homepage");
+                break;
+            case "6":
+                hashHistory.push("/app/about");
+                break;
+
+        }
+    }
     render() {
         return (
             <Layout id="components-layout-demo-side">
@@ -24,10 +40,13 @@ class App extends Component {
                     onCollapse={this.onCollapse}
                 >
                     <div className="logo" />
-                    <Menu theme="dark" mode={this.state.mode} defaultSelectedKeys={['1']}>
+                    <Menu
+                        onClick={this.handleMenuClick}
+                        theme="dark" mode={this.state.mode}
+                        defaultSelectedKeys={['1']}>
                         <Menu.Item key="1">
                             <span>
-                                <Icon type="file" />
+                                <Icon type="home" />
                                 <span className="nav-text">首页</span>
                             </span>
                         </Menu.Item>
@@ -45,7 +64,12 @@ class App extends Component {
                             <Menu.Item key="4">英语趣配音</Menu.Item>
                             <Menu.Item key="5">体育锻炼卡</Menu.Item>
                         </SubMenu>
-
+                        <Menu.Item key="6">
+                            <span>
+                                <Icon type="info-circle" />
+                                <span className="nav-text">关于</span>
+                            </span>
+                        </Menu.Item>
                     </Menu>
                 </Sider>
                 <Layout>
@@ -56,12 +80,12 @@ class App extends Component {
                             <Breadcrumb.Item>Bill</Breadcrumb.Item>
                         </Breadcrumb>
                         {/*这里是放置页面内容*/}
-                        <div style={{background: '#fff', minHeight: '100%' }}>
+                        <div style={{ background: '#fff', minHeight: '100%' }}>
                             {this.props.children}
                         </div>
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
-                       React-Ant-Demo ©2017 Created by Fossil.Lin
+                        React-Ant-Demo ©2017 Created by Fossil.Lin
           </Footer>
                 </Layout>
             </Layout>
