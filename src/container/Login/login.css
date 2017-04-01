@@ -1,0 +1,43 @@
+/*设置登录框容器的样式*/
+
+.login-header {
+  height: 90px;
+  border-bottom: 1px solid #bdaeae;
+  background: white;
+}
+
+#login-form-container {
+  margin-top: 90px;
+}
+
+.loginLayout #logo {
+  background: url('../../resource/logo.png') no-repeat;
+  background-size: 100%;
+  float: left;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.loginLayout #logo a {
+  float: left;
+  display: inline-block;
+  overflow: hidden;
+  text-indent: -999em;
+}
+
+#login-form-container .login-form {
+  float: right;
+  margin-right: 100px;
+  border: 2px solid #cccaca;
+  padding: 20px;
+  font-size: 14px;
+  background: white;
+}
+
+#login-form-container .login-form-forgot {
+  float: right;
+}
+
+#login-form-container .login-form-button {
+  width: 100%;
+}

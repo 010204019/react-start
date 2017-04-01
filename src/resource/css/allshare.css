@@ -1,0 +1,11 @@
+/*设定全局高度为自适应浏览器*/
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+/*设置ant的layout高度为100%*/
+.ant-layout {
+  height: 100%;
+}

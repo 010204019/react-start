@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import '../resource/css/allshare.css'
 class RootApp extends Component {
     state = {
         isLogined: false,
@@ -6,8 +7,8 @@ class RootApp extends Component {
     };
     
     componentWillMount() {
-        console.log("RooaAp componentWillMount");
-        console.log(this.props)
+        // console.log("RooaAp componentWillMount");
+        // console.log(this.props)
     }
     
     render() {

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-import { Link, browserHistory,hashHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 import './app.css';
