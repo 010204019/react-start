@@ -2,8 +2,9 @@
 html,
 body,
 #root {
-  width: 100%;
+
   height: 100%;
+  overflow-y: hidden;
 }
 /*设置ant的layout高度为100%*/
 .ant-layout {
