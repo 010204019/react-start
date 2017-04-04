@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import {hashHistory} from 'react-router';
 import * as auth from '../../util/authorized'
+import * as $http from '../../util/fetchdata.js'
 import './login.css'
 import { Form, Input, Icon, Checkbox, Button, Layout, notification } from 'antd'
 const FormItem = Form.Item
@@ -28,6 +29,8 @@ class NormalLoginForm extends React.Component {
             if (!err) {
                 //获取输入信息
                 let { userName, password } = values;
+                fetch("http://jsonplaceholder.typicode.com/users")
+                $http.postData("http://m.knoedu.com/app/login_apkCheckVersion.action",{});
                 if (userName == "admin" && password == "password") {
                     auth.authSetLoginToken(userName);
                     auth.authSetLoginUser({
@@ -39,7 +42,7 @@ class NormalLoginForm extends React.Component {
                         msg: "登录成功",
                         type: "success",
                         call: () => {
-                            hashHistory.push("/app/homepage");
+                            hashHistory.push("/rotapp/homepage");
                         }
                     })
                 } else {

@@ -1,6 +1,6 @@
 import {routefilterChunk} from '../../util/routeutil';
 module.exports = {
-  path: '/app',
+  path: '/rotapp',
   onEnter: routefilterChunk(),
   getComponent(nextState, cb) {
     require.ensure([], (require) => {
