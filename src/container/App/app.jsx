@@ -5,6 +5,14 @@ const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 import './app.css';
 class App extends Component {
+
+     componentWillMount() {
+      console.log("App componentWillMount");
+    const { routes } = this.props; // array of routes
+    const { router } = this.context;
+ 
+ 
+  }
     state = {
         collapsed: false,
         mode: 'inline',
@@ -97,4 +105,4 @@ App.propTypes = {
 
 };
 
-export default App;
+module.exports = App;

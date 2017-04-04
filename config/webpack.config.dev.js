@@ -154,6 +154,11 @@ module.exports = {
         test: /\.json$/,
         loader: 'json'
       },
+      // {
+      //   test: /routes[\/\\]([^\/\\]+[\/\\]?[^\/\\]+).js/,
+      //   include: paths.appSrc,
+      //   loaders: ['bundle?lazy', 'babel']
+      // },
       // "file" loader for svg
       {
         test: /\.svg$/,

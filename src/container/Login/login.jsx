@@ -1,15 +1,55 @@
 import React, { Component, PropTypes } from 'react'
+import {hashHistory} from 'react-router';
+import * as auth from '../../util/authorized'
 import './login.css'
-import { Form, Input, Icon, Checkbox, Button, Layout } from 'antd'
+import { Form, Input, Icon, Checkbox, Button, Layout, notification } from 'antd'
 const FormItem = Form.Item
 const { Header, Footer } = Layout;
+
+const openNotification = ({ msg = "", type = "info", call = null }) => {
+    const args = {
+        message: '提示信息',
+        description: msg,
+        duration: 1,
+        getContainer: () => document.getElementById("login-form-loginform"),
+        onClose: () => {
+            if (call != null) {
+                call();
+            }
+        }
+    };
+    notification[type](args);
+};
 
 class NormalLoginForm extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                //获取输入信息
+                let { userName, password } = values;
+                if (userName == "admin" && password == "password") {
+                    auth.authSetLoginToken(userName);
+                    auth.authSetLoginUser({
+                        "name": userName + "先生/女士",
+                        "loginId": userName
+                    });
+                    auth.authSetRole = auth.AUTHORIZED_ROLE_ADMIN;
+                    openNotification({
+                        msg: "登录成功",
+                        type: "success",
+                        call: () => {
+                            hashHistory.push("/app/homepage");
+                        }
+                    })
+                } else {
+                    openNotification({
+                        msg: "用户或者密码不正确", 
+                        type: "error", 
+                        call: () => {
+                        }
+                    })
+                }
             }
         });
     }
@@ -19,15 +59,15 @@ class NormalLoginForm extends React.Component {
             <Layout className="loginLayout" style={{ height: '100%' }}>
                 <Header className="login-header">
                     <div className="logoBaner">
-                        <h1 class="logo" id="logo"><a href="#">React-Start</a></h1>
-                        <h2 class="logo-title" style={{marginTop:'5px',fontSize: '40px'}}>
+                        <h1 className="logo" id="logo"><a href="#">React-Start</a></h1>
+                        <h2 className="logo-title" style={{ marginTop: '5px', fontSize: '40px' }}>
                             React Start 示例项目
                     </h2>
                     </div>
                 </Header>
                 <Layout className="layout">
                     <div id="login-form-container">
-                        <Form onSubmit={this.handleSubmit} className="login-form">
+                        <Form id="login-form-loginform" onSubmit={this.handleSubmit} className="login-form">
                             <FormItem>
                                 {getFieldDecorator('userName', {
                                     rules: [{ required: true, message: '请输入帐号' }],
@@ -37,7 +77,7 @@ class NormalLoginForm extends React.Component {
                             </FormItem>
                             <FormItem>
                                 {getFieldDecorator('password', {
-                                    rules: [{ required: true, message: '请输入面膜!' }],
+                                    rules: [{ required: true, message: '请输入密码!' }],
                                 })(
                                     <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="密码" />
                                     )}
@@ -70,5 +110,5 @@ class NormalLoginForm extends React.Component {
     }
 }
 
-const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
-export default WrappedNormalLoginForm
+const Login = Form.create()(NormalLoginForm);
+module.exports = Login;

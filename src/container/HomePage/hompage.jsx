@@ -29,7 +29,7 @@ const data = [{
     address: 'Sidney No. 1 Lake Park',
 }];
 
-class homePage extends Component {
+class HomePage extends Component {
     render() {
         return (
             <div>
@@ -66,4 +66,4 @@ class homePage extends Component {
 }
 
 
-export default homePage;
+module.exports = HomePage;

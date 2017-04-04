@@ -1,20 +1,11 @@
+import {routefilterChunk} from '../../util/routeutil';
 module.exports = {
   path: '/app',
+  onEnter: routefilterChunk(),
   getComponent(nextState, cb) {
     require.ensure([], (require) => {
-      cb(null, require('../../container/App/app').default)
+      cb(null, require('../../container/App/app'))
     }, 'App')
-  },
-  indexRoute: {
-    getComponent: (nextState, cb) => {
-      // Only load if we're logged in
-      // if (auth.loggedIn()) {
-      return require.ensure([], (require) => {
-        cb(null, require('../../container/HomePage/hompage'))
-      }, 'Homepage')
-      // }
-
-    }
   },
   childRoutes: [
     require('./homepage/index'),
