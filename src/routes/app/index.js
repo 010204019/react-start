@@ -1,6 +1,6 @@
 import {routefilterChunk} from '../../util/routeutil';
 module.exports = {
-  path: '/rotapp',
+  path: '/app',
   onEnter: routefilterChunk(),
   getComponent(nextState, cb) {
     require.ensure([], (require) => {
@@ -10,5 +10,6 @@ module.exports = {
   childRoutes: [
     require('./homepage/index'),
     require('./about/index'),
+    require('./activity/index'),
   ]
 }

@@ -217,18 +217,6 @@ module.exports = {
     fs: 'empty',
     net: 'empty',
     tls: 'empty'
-  },
-  
-        //其实很简单的，只要配置这个参数就可以了  
 
-  devServer: {
-    proxy: {
-      '/app': {
-        target: 'http://m.knoedu.com',
-        secure: false
-      }
-    }
-  }
-
-    
+  } 
 };
