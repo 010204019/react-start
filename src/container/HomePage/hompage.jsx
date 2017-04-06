@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import {Carousel, Row, Col, Card,Table } from 'antd';
 import './homepage.css'
-
+import * as $http from '../../util/fetchdata.js';
 const columns = [{
     title: '姓名',
     dataIndex: 'name',
@@ -30,6 +30,11 @@ const data = [{
 }];
 
 class HomePage extends Component {
+    componentDidMount() {
+        console.log("In Homepage");
+         $http.postData("dynamic_getLatestInfoNew.action", {})
+    }
+    
     render() {
         return (
             <div>

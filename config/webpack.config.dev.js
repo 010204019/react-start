@@ -224,7 +224,7 @@ module.exports = {
   devServer: {
     proxy: {
       '/app': {
-        target: 'http://m.knoedu.com',
+        target: 'http://192.168.0.210',
         secure: false
       }
     }

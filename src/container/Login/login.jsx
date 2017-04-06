@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import {hashHistory} from 'react-router';
+import { hashHistory } from 'react-router';
 import * as auth from '../../util/authorized'
 import * as $http from '../../util/fetchdata.js'
 import './login.css'
@@ -29,29 +29,47 @@ class NormalLoginForm extends React.Component {
             if (!err) {
                 //获取输入信息
                 let { userName, password } = values;
-                fetch("http://jsonplaceholder.typicode.com/users")
-                $http.postData("http://m.knoedu.com/app/login_apkCheckVersion.action",{});
-                if (userName == "admin" && password == "password") {
-                    auth.authSetLoginToken(userName);
-                    auth.authSetLoginUser({
-                        "name": userName + "先生/女士",
-                        "loginId": userName
+                //测试代码
+                //fetch("http://192.168.0.210/app/login_apkCheckVersion.action",{ method: "POST",})
+                let parms = {
+                    username: userName,
+                    password: password,
+                    "sysEquipment.uuid":"",
+                    loginType: 1,
+                };
+                $http.postData("login_appLoginWithEqInfos.action", parms)
+                    .then(function (response) {
+                        console.log(response.data);
+                        let { loginState = null, loginName=null ,loginUserId =null} = response.data;
+                        if (loginState == 1) {
+                            //登录成功
+                            auth.authSetLoginToken(userName);
+                            auth.authSetLoginUser({
+                                "name": loginName,
+                                "loginId": loginUserId
+                            });
+                            auth.authSetRole(auth.AUTHORIZED_ROLE_NORMAL);
+                            openNotification({
+                                msg: "登录成功",
+                                type: "success",
+                                call: () => {
+                                    hashHistory.push("/rotapp/homepage");
+                                }
+                            })
+                        } else {
+                            openNotification({
+                                msg: "用户或者密码不正确",
+                                type: "error",
+                                call: () => {
+                                }
+                            })
+                        }
                     });
-                    auth.authSetRole = auth.AUTHORIZED_ROLE_ADMIN;
-                    openNotification({
-                        msg: "登录成功",
-                        type: "success",
-                        call: () => {
-                            hashHistory.push("/rotapp/homepage");
-                        }
-                    })
+                //测试代码
+                if (userName == "admin" && password == "password") {
+
                 } else {
-                    openNotification({
-                        msg: "用户或者密码不正确", 
-                        type: "error", 
-                        call: () => {
-                        }
-                    })
+
                 }
             }
         });

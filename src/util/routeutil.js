@@ -20,14 +20,11 @@ export function routefilterChunk({ isAuth = true, authRole=[], redirecTo = "", c
         }
     }
     let authorized_role = authGetRole();
-    authSetRole("查人")
-    console.log("权限-角色【"+authorized_role+"】")
-    console.log("-------routefilterChunk--------");
-    console.log("-------routefilterCallBack--------");
+   
     if (callback != null) {
         callback()
     }
-    console.log("-------routefilterCallBack--------");
+
 }
 
 // export function lazyLoadCompent(nextState, cb, path, name) {
