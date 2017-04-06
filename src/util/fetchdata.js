@@ -1,23 +1,65 @@
-/**
- * Created by admin on 2016/10/10.
- */
 import axios from 'axios'
+import {
+    hashHistory
+} from 'react-router';
+import * as auth from '../util/authorized'
 
-//axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+// 设置相关的参数
+var tempUrlExpand = ";jsessionid=48FF0034845E3F6F2DE836DA28CF5A0F"; //强制设置cookie，部署时【取消】
+var tempDomian = "http://192.168.0.210/app/"; //强制设置请求的域名，部署是设置为【项目的名称】
+
 //封装好的get和post接口，调用方法情况action文件
 export let instance = axios.create({
     // baseURL: API_URL, //设置默认api路径
     timeout: 10000, //设置超时时间
-    // headers: {'Content-Type': 'pplication/x-www-form-urlencoded;charset=UTF-8'}
+    // headers: {'client_type': 'app'}
 });
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-axios.defaults.baseURL= 'http://192.168.0.210/app/';
+axios.defaults.baseURL = tempDomian;
+// xios.defaults.withCredentials = true; //如果后端服务器启用CORS即可启用传cookie
+/**
+ * 请求拦截器
+ */
+instance.interceptors.request.use(function (config) {
+    // 如果登录过了
+    if (config.url.indexOf(".action") >= 0) {
+        config.url = config.url + tempUrlExpand;
+    }
+    return config;
+}, function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+});
+
+/**
+ * 响应拦截器
+ */
+instance.interceptors.response.use(function (response) {
+    if (response.request.responseURL.indexOf('login.jsp') >= 0) {
+        //会话失效了，跳转到登录页面
+        hashHistory.push("/login");
+        auth.authSetLoginToken("");
+        auth.authSetLoginUser({});
+        auth.authSetRole("");
+    }
+    return response;
+}, function (error) {
+    return Promise.reject(error);
+});
 
 export const getData = (url, param) => {
     return (
-        instance.get(`${url}`, param)
+        instance.get(`${url}`, {
+            params: param
+        })
     )
 }
+export const postData = (url, param) => {
+    return (
+        instance.post(`${url}`, paramJsonObject(param))
+    )
+}
+
 var paramJsonObject = function (obj) {
     var query = '',
         name, value, fullSubName, subName, subValue, innerObj, i;
@@ -46,11 +88,4 @@ var paramJsonObject = function (obj) {
     }
 
     return query.length ? query.substr(0, query.length - 1) : query;
-}
-export const postData = (url, param) => {
-    console.log(url)
-    console.log(JSON.stringify(param))
-    return (
-        instance.post(`${url}`, paramJsonObject(param))
-    )
 }

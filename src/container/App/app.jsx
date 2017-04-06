@@ -1,18 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Layout, Menu, Breadcrumb, Icon} from 'antd';
 import { hashHistory } from 'react-router';
-const { Header, Content, Footer, Sider } = Layout;
+import * as routerUrl from '../../routes/routeconst';
+const { Header, Content, Footer, Sider} = Layout;
 const SubMenu = Menu.SubMenu;
 import './app.css';
 class App extends Component {
-
-     componentWillMount() {
-      console.log("App componentWillMount");
-    const { routes } = this.props; // array of routes
-    const { router } = this.context;
- 
- 
-  }
+    componentWillMount() {
+    }
     state = {
         collapsed: false,
         mode: 'inline',
@@ -31,10 +26,13 @@ class App extends Component {
         console.log(e);
         switch (e.key) {
             case "1":
-                hashHistory.push("/app/homepage");
+                hashHistory.push(routerUrl.URL_HOME_PAGE);
+                break;
+            case "4":
+                hashHistory.push(routerUrl.URL_ACTIVITY_LIST);
                 break;
             case "6":
-                hashHistory.push("/app/about");
+                hashHistory.push(routerUrl.URL_ABOUT);
                 break;
 
         }
@@ -69,7 +67,7 @@ class App extends Component {
                             key="sub2"
                             title={<span><Icon type="team" /><span className="nav-text">发现</span></span>}
                         >
-                            <Menu.Item key="4">英语趣配音</Menu.Item>
+                            <Menu.Item key="4">活动报名</Menu.Item>
                             <Menu.Item key="5">体育锻炼卡</Menu.Item>
                         </SubMenu>
                         <Menu.Item key="6">
@@ -80,21 +78,23 @@ class App extends Component {
                         </Menu.Item>
                     </Menu>
                 </Sider>
-                <Layout>
+                 <Layout>
                     <Header style={{ background: '#fff', padding: 0 }} />
-                    <Content style={{ margin: '0 16px' }}>
-                        <Breadcrumb style={{ margin: '12px 0' }}>
+                    <Content style={{ margin: '5px 10px' }}>
+                        
+                        {/*<Breadcrumb style={{ margin: '12px 0' }}>
                             <Breadcrumb.Item>User</Breadcrumb.Item>
                             <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                        </Breadcrumb>
+                        </Breadcrumb>*/}
                         {/*这里是放置页面内容*/}
+                        
                         <div style={{ background: '#fff', minHeight: '100%' }}>
                             {this.props.children}
                         </div>
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>
+                    {/*<Footer style={{ textAlign: 'center' }}>
                         React-Ant-Demo ©2017 Created by Fossil.Lin
-          </Footer>
+                    </Footer>*/}
                 </Layout>
             </Layout>
         );

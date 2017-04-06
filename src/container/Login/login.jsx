@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { hashHistory } from 'react-router';
 import * as auth from '../../util/authorized'
-import * as $http from '../../util/fetchdata.js'
+import * as $http from '../../util/fetchdata'
+import * as routerUrl from '../../routes/routeconst';
 import './login.css'
 import { Form, Input, Icon, Checkbox, Button, Layout, notification } from 'antd'
 const FormItem = Form.Item
@@ -30,7 +31,6 @@ class NormalLoginForm extends React.Component {
                 //获取输入信息
                 let { userName, password } = values;
                 //测试代码
-                //fetch("http://192.168.0.210/app/login_apkCheckVersion.action",{ method: "POST",})
                 let parms = {
                     username: userName,
                     password: password,
@@ -53,7 +53,7 @@ class NormalLoginForm extends React.Component {
                                 msg: "登录成功",
                                 type: "success",
                                 call: () => {
-                                    hashHistory.push("/rotapp/homepage");
+                                    hashHistory.push(routerUrl.URL_HOME_PAGE);
                                 }
                             })
                         } else {

@@ -1,9 +1,10 @@
 import {routefilterChunk} from '../util/routeutil';
 import {hashHistory} from 'react-router';
+import * as routerUrl from './routeconst';
 export const rootRoute = {
   author:"hellow",
   path: '/',
-  onEnter: routefilterChunk({callback:()=>{console.log("rootRoute");hashHistory.push("/rotapp/homepage")}}),
+  onEnter: routefilterChunk({callback:()=>{hashHistory.push(routerUrl.URL_HOME_PAGE)}}),
   getComponent(nextState, cb) {
     require.ensure([], (require) => {
       cb(null, require('../container/rootapp'))
