@@ -5,8 +5,8 @@ import {
 import * as auth from '../util/authorized'
 
 // 设置相关的参数
-var tempUrlExpand = ";jsessionid=94DEEE2AA43B4FB1E2CBA2AA8F9FB847"; //强制设置cookie，部署时【取消】;jsessionid=48FF0034845E3F6F2DE836DA28CF5A0F
-var tempDomian = "http://m.knoedu.com/app/"; //强制设置请求的域名，部署是设置为【项目的名称】
+var tempUrlExpand = ";jsessionid=49ADF9D65216379236E2FB18F7F8F41A"; //强制设置cookie，部署时【取消】;jsessionid=48FF0034845E3F6F2DE836DA28CF5A0F
+var tempDomian = "http://192.168.0.210/app/"; //强制设置请求的域名，部署是设置为【项目的名称】
 
 //封装好的get和post接口，调用方法情况action文件
 export let instance = axios.create({

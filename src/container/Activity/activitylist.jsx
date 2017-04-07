@@ -60,7 +60,6 @@ class ActivityList extends Component {
         this.setState({
             pagination: pager,
         });
-        alert(pagination.current)
         this.fetchUrl({
             "pageInfo.pageNo":pagination.current,
             "pageInfo.page":pagination.current,
@@ -91,6 +90,10 @@ class ActivityList extends Component {
         })
     }
     componentDidMount() {
+        console.log("activyin....")
+        console.log(this.state);
+        console.log(this.state);
+        console.log("activyin....")
         this.fetchUrl();
     }
     render() {
