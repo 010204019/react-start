@@ -1,19 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import * as $http from '../../util/fetchdata'
-import { Table, Button, Select  } from 'antd';
-const {Option} = Select;
+import { Table, Button, Select } from 'antd';
+import PaginationList from '../../component/comon/paginationlist'
+const { Option } = Select;
 
 
-function handleSelectChange(value) {
-  console.log(`selected ${value}`);
-}
+
 
 
 const columns = [{
     title: '标题',
     dataIndex: 'hwInfo.title',
     // sorter: true,
-   // render: name => `${name.first} ${name.last}`,
+    // render: name => `${name.first} ${name.last}`,
     width: '40%',
 }, {
     title: '班级',
@@ -45,13 +44,49 @@ const rowSelection = {
     }),
 };
 
+const paginationConfig = {
+    //分页列表设置---设置列内容
+    columns: columns,
+    //分页配置----行选择
+    rowSelection: {
+        onChange: (selectedRowKeys, selectedRows) => {
+            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+        },
+        onSelect: (record, selected, selectedRows) => {
+            console.log(record, selected, selectedRows);
+        },
+        onSelectAll: (selected, selectedRows, changeRows) => {
+            console.log(selected, selectedRows, changeRows);
+        },
+        getCheckboxProps: record => ({
+            disabled: record.name === 'Disabled User',    // Column configuration not to be checked
+        }),
+    }
+
+};
+
 class ActivityList extends Component {
+    constructor(props, context) {
+        console.log("ActivityList---constructor---start")
+        super(props, context);
+        console.log(props)
+        console.log("ActivityList---constructor---end")
+
+    }
+    handleSelectChange = (value) =>{
+        console.log(`selected ${value}`);
+        console.log()
+        this.refs.listpage_activity.messageText("okokok")
+    }
+
     state = {
         data: [],
         pagination: {
-            defaultPageSize:10,
-            pageSize:10},
+            defaultPageSize: 10,
+            pageSize: 10
+        },
         loading: false,
+        pageListConfig: paginationConfig
     };
 
     handleTableChange = (pagination, filters, sorter) => {
@@ -61,18 +96,18 @@ class ActivityList extends Component {
             pagination: pager,
         });
         this.fetchUrl({
-            "pageInfo.pageNo":pagination.current,
-            "pageInfo.page":pagination.current,
-            "pageInfo.rows":pagination.pageSize,
-            "pageInfo.pageSize":pagination.pageSize,
-            "hwInfo.releState":1,
+            "pageInfo.pageNo": pagination.current,
+            "pageInfo.page": pagination.current,
+            "pageInfo.rows": pagination.pageSize,
+            "pageInfo.pageSize": pagination.pageSize,
+            "hwInfo.releState": 1,
         });
     }
     fetchUrl = (params = {
-        "pageInfo.pageNo":1,
-        "pageInfo.page":1,
-        "pageInfo.pageSize":10,
-        "hwInfo.releState":1,
+        "pageInfo.pageNo": 1,
+        "pageInfo.page": 1,
+        "pageInfo.pageSize": 10,
+        "hwInfo.releState": 1,
 
     }) => {
         let _this = this;
@@ -98,26 +133,27 @@ class ActivityList extends Component {
     }
     render() {
         return (
-            <div style={{padding:'15px'}}>
-                <div style={{marginTop:'15px'}}>
-                <Select  size="large"  defaultValue="publish" style={{ width: 120 }} onChange={handleSelectChange}>
-                    <Option value="publish">已发布</Option>
-                    <Option value="unpublish">未发布</Option>
-                </Select>
+            <div style={{ padding: '15px' }}>
+                <div style={{ marginTop: '15px' }}>
+                    <Select size="large" defaultValue="publish" style={{ width: 120 }} onChange={this.handleSelectChange}>
+                        <Option value="publish">已发布</Option>
+                        <Option value="unpublish">未发布</Option>
+                    </Select>
                 </div>
-                <div style={{marginTop:'15px'}}>
-                      <Table columns={columns}
+                <div style={{ marginTop: '15px' }}>
+                    <PaginationList ref="listpage_activity" config={this.state.pageListConfig}></PaginationList>
+                    {/*<Table columns={columns}
                 rowSelection={rowSelection}
                 rowKey={record => record.id}
                 dataSource={this.state.data}
                 pagination={this.state.pagination}
                 loading={this.state.loading}
                 onChange={this.handleTableChange}
-            />
+            />*/}
+                </div>
+
             </div>
-            
-            </div>
-      
+
         );
     }
 }
