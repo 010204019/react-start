@@ -1,5 +1,7 @@
-export const ACT_TYPE_LOGIN_LOGIN = "ACT_TYPE_LOGIN_LOGIN";
+export const ACT_PAGE_CHANGE_LOADING = "AC_PAGE_CHANGE_LOADING";
 //登录
-export function login(username,password) {
-  return { type: ACT_TYPE_LOGIN_LOGIN, username ,password }
+export function actf_pageChangeLoading(flg) {
+  return { 
+    type: ACT_PAGE_CHANGE_LOADING, 
+    payload:{flg}}
 }

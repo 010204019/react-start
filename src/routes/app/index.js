@@ -1,4 +1,6 @@
-import {routefilterChunk} from '../../util/routeutil';
+import {
+  routefilterChunk
+} from '../../util/routeutil';
 module.exports = {
   path: '/app',
   onEnter: routefilterChunk(),
@@ -10,6 +12,6 @@ module.exports = {
   childRoutes: [
     require('./homepage/index'),
     require('./about/index'),
-    require('./activity/index'),
+    require('./homework/index'),
   ]
 }

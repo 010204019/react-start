@@ -28,8 +28,8 @@ class App extends Component {
             case "1":
                 hashHistory.push(routerUrl.URL_HOME_PAGE);
                 break;
-            case "4":
-                hashHistory.push(routerUrl.URL_ACTIVITY_LIST);
+            case "2":
+                hashHistory.push(routerUrl.URL_HOMEWORK_LIST);
                 break;
             case "6":
                 hashHistory.push(routerUrl.URL_ABOUT);

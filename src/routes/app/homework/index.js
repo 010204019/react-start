@@ -2,13 +2,14 @@ import {
   routefilterChunk,
   routeeWithLoader
 } from '../../../util/routeutil';
+
 module.exports = {
-  path: 'about',
-   onEnter: routefilterChunk(),
+  path: 'homeworks',
+  onEnter: routefilterChunk(),
   getComponent: routeeWithLoader(
     (nextState, cb) => {
       require.ensure([], require => {
-        cb(null, require('../../../container/About/about'))
-      }, 'About')
+        cb(null, require('../../../container/HomeWork/homeworklist'))
+      }, 'HomeWorkList')
     })
 }

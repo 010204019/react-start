@@ -1,5 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import {Carousel, Row, Col, Card,Table } from 'antd';
+// import json from './json'
+// import json1 from './json1'
+// import json2 from './json2'
+// import json3 from './json3'
+// import json4 from './json4'
+// import json5 from './json5'
+// import json6 from './json6'
+// import json7 from './json7'
 import './homepage.css'
 import * as $http from '../../util/fetchdata.js';
 const columns = [{
@@ -12,7 +20,7 @@ const columns = [{
     title: '地址',
     dataIndex: 'address',
 }];
-const data = [{
+const data=[{
     key: '1',
     name: 'John Brown',
     age: 32,
@@ -27,12 +35,14 @@ const data = [{
     name: 'Joe Black',
     age: 32,
     address: 'Sidney No. 1 Lake Park',
-}];
+}]
+
 
 class HomePage extends Component {
     componentDidMount() {
         console.log("In Homepage");
          $http.postData("dynamic_getLatestInfoNew.action", {})
+
     }
     
     render() {
